@@ -78,6 +78,16 @@ const DataTable: React.FC<DataTableProps> = ({
 
 	return (
 		<div className="data-table-container">
+			<div className="pagination-container">
+				<Pagination
+					onRowChange={onRowsPerPageChange}
+					onPageChange={onPageChange}
+					rowsPerPage={rowsPerPage}
+					page={page}
+					totalRows={data?.length}
+					rowPerPageOptions={rowPerPageOptions}
+				/>
+			</div>
 			<div className="table-container">
 				<Table>
 					<TableBody>
@@ -95,16 +105,6 @@ const DataTable: React.FC<DataTableProps> = ({
 						))}
 					</TableBody>
 				</Table>
-			</div>
-			<div className="pagination-container">
-				<Pagination
-					onRowChange={onRowsPerPageChange}
-					onPageChange={onPageChange}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					totalRows={data?.length}
-					rowPerPageOptions={rowPerPageOptions}
-				/>
 			</div>
 		</div>
 	);

@@ -4,6 +4,16 @@ body {
 * {
 	box-sizing: border-box;
 }
+.data-table-container {
+	display: flex;
+	flex-direction: column;
+}
+.pagination-container {
+	display: inline-block;
+}
+.table-container {
+	display: inline-block;
+}
 .pagination {
 	display: flex;
 	align-items: center;
@@ -50,4 +60,23 @@ body {
 .pagination .page-nav button:disabled {
 	opacity: 0.3;
 	cursor: auto;
+}
+
+table {
+	border-collapse: collapse;
+}
+table th {
+	text-align: left;
+	background-color: #b7edff;
+	font-size: 16px;
+}
+table td {
+	font-size: 15px;
+}
+table th,
+table td {
+	padding: 5px;
+	margin: 0;
+	text-transform: capitalize;
+	border: 1px solid #ccc;
 }
