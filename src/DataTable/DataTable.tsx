@@ -77,34 +77,36 @@ const DataTable: React.FC<DataTableProps> = ({
 	);
 
 	return (
-		<div className="data-table-container">
-			<div className="pagination-container">
-				<Pagination
-					onRowChange={onRowsPerPageChange}
-					onPageChange={onPageChange}
-					rowsPerPage={rowsPerPage}
-					page={page}
-					totalRows={data?.length}
-					rowPerPageOptions={rowPerPageOptions}
-				/>
-			</div>
-			<div className="table-container">
-				<Table>
-					<TableBody>
-						<TableRow>
-							<TableHeading>index</TableHeading>
-							{columns?.map((col, index) => (
-								<TableHeading key={index}>{col}</TableHeading>
-							))}
-						</TableRow>
-						{rowsOnOnePage?.map((row, index) => (
-							<TableRow key={index}>
-								<TableData key={index}>{getIndex(index + 1)}</TableData>
-								{getRowData(row, columns)}
+		<div className="flex-table">
+			<div className="data-table-container">
+				<div className="pagination-container">
+					<Pagination
+						onRowChange={onRowsPerPageChange}
+						onPageChange={onPageChange}
+						rowsPerPage={rowsPerPage}
+						page={page}
+						totalRows={data?.length}
+						rowPerPageOptions={rowPerPageOptions}
+					/>
+				</div>
+				<div className="table-container">
+					<Table>
+						<TableBody>
+							<TableRow>
+								<TableHeading>index</TableHeading>
+								{columns?.map((col, index) => (
+									<TableHeading key={index}>{col}</TableHeading>
+								))}
 							</TableRow>
-						))}
-					</TableBody>
-				</Table>
+							{rowsOnOnePage?.map((row, index) => (
+								<TableRow key={index}>
+									<TableData key={index}>{getIndex(index + 1)}</TableData>
+									{getRowData(row, columns)}
+								</TableRow>
+							))}
+						</TableBody>
+					</Table>
+				</div>
 			</div>
 		</div>
 	);

@@ -24,9 +24,24 @@ const Pagination: React.FC<PaginationProps> = ({
 		return Math.ceil((totalRows || 0) / (rowsPerPage || 0));
 	}, [totalRows, rowsPerPage]);
 
+	const handleRowChange = (rowsPerPage: number) => {
+		onRowChange?.(rowsPerPage);
+		setToggleDropdown((prev) => !prev);
+	};
+
+	const startPage = (rowsPerPage || 0) * (page || 0) + 1;
+
+	const endPage = (rowsPerPage || 0) * (page || 0) + (rowsPerPage || 0);
+
 	return (
 		<div {...props} className="pagination">
 			<div className="dropdown">
+				<div>
+					Showing{" "}
+					<span className="current-page">
+						{startPage} - {endPage} of {totalRows}
+					</span>
+				</div>
 				<div className="label">Rows Per Page</div>
 				<div className="selected-values" onClick={() => setToggleDropdown((prev) => !prev)}>
 					{rowsPerPage}
@@ -34,7 +49,7 @@ const Pagination: React.FC<PaginationProps> = ({
 				{toggleDropdown && (
 					<ul>
 						{rowPerPageOptions?.map((rows) => (
-							<li onClick={() => onRowChange?.(rows)} key={rows}>
+							<li onClick={() => handleRowChange(rows)} key={rows}>
 								{rows}
 							</li>
 						))}
@@ -45,7 +60,6 @@ const Pagination: React.FC<PaginationProps> = ({
 				<button disabled={page === 0} onClick={() => onPageChange?.((page || 0) - 1)}>
 					Previous
 				</button>
-				<span className="current-page">{(page || 0) + 1}</span>
 				<button
 					disabled={page === totalPages - 1}
 					onClick={() => onPageChange?.((page || 0) + 1)}
